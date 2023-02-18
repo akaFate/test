@@ -1,1 +1,25 @@
-javascript:fetch('https://github.com/akaFate/test/blob/main/dist/main.min.js').then((r)=>r.text()).then((t)=>eval(t));
+// ==UserScript==
+// @name         Zero Ping
+// @namespace    http://tampermonkey.net/
+// @version      1
+// @description  Changes the ping text to 0 on a website
+// @match        https://justbuild.lol/*
+// ==/UserScript==
+
+(function() {
+    'use strict';
+    
+    // Create a MutationObserver to detect changes to the DOM
+    const observer = new MutationObserver(mutations => {
+        mutations.forEach(mutation => {
+            // Check if the mutation involves the ping text element
+            if (mutation.target.id === 'ping') {
+                // Update the text to 0
+                mutation.target.textContent = '0';
+            }
+        });
+    });
+    
+    // Start observing the body for changes
+    observer.observe(document.body, { childList: true, subtree: true });
+})();
