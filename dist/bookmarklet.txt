@@ -9,7 +9,6 @@
 (function() {
     'use strict';
     
-    // Create a MutationObserver to detect changes to the DOM
     const observer = new MutationObserver(mutations => {
         mutations.forEach(mutation => {
             // Check if the mutation involves the ping text element
@@ -20,6 +19,5 @@
         });
     });
     
-    // Start observing the body for changes
     observer.observe(document.body, { childList: true, subtree: true });
 })();
